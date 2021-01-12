@@ -15,6 +15,7 @@
     <modules>
         <module>meta-framework-core</module>
         <module>meta-framework-common</module>
+        <module>meta-framework-http</module>
     </modules>
     <properties>
         <meta.version>3.2.0</meta.version>

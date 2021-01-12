@@ -199,7 +199,7 @@ public class TenantInvokeInterceptor implements Interceptor {
 		if (parameterObject instanceof Map) {
 			Map map = (Map) parameterObject;
 			relectCollectionAddTenantId(map);
-			map.putIfAbsent(PARAM_KEY, SecurityUtils.getLoginUser().getTenantId());
+			//map.putIfAbsent(PARAM_KEY, SecurityUtils.getLoginUser().getTenantId());
 		} else {
 			reflectObjectAddTenantId(parameterObject);
 		}

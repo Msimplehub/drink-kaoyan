@@ -1,15 +1,7 @@
 package com.meta.framework.service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.concurrent.TimeUnit;
-import javax.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-import com.meta.framework.common.constant.Constants;
 import com.meta.framework.act.model.LoginUser;
+import com.meta.framework.common.constant.Constants;
 import com.meta.framework.common.core.redis.RedisCache;
 import com.meta.framework.common.utils.ServletUtils;
 import com.meta.framework.common.utils.StringUtils;
@@ -20,6 +12,15 @@ import eu.bitwalker.useragentutils.UserAgent;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 /**
  * token验证处理
@@ -55,7 +56,7 @@ public class TokenService
      *
      * @return 用户信息
      */
-    public LoginUser getLoginUser(HttpServletRequest request)
+    public LoginUser getLoginUser(HttpServletRequest request) 
     {
         // 获取请求携带的令牌
         String token = getToken(request);

@@ -5,8 +5,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.meta.framework.aspectj.task.OpLogAsyncFactory;
 import com.meta.framework.manager.AsyncManager;
-import com.meta.framework.manager.factory.AsyncFactory;
 import com.meta.framework.service.TokenService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
@@ -114,7 +114,7 @@ public class LogAspect
             // 处理设置注解上的参数
             getControllerMethodDescription(joinPoint, controllerLog, operLog);
             // 保存数据库
-            AsyncManager.me().execute(AsyncFactory.recordOper(operLog));
+            AsyncManager.me().execute(OpLogAsyncFactory.recordOper(operLog));
         }
         catch (Exception exp)
         {

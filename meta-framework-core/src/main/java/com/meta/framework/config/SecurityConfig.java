@@ -1,8 +1,7 @@
 package com.meta.framework.config;
 
 import com.meta.framework.security.filter.JwtAuthenticationTokenFilter;
-import com.meta.framework.security.handle.AuthenticationEntryPointImpl;
-import com.meta.framework.security.handle.LogoutSuccessHandlerImpl;
+import com.meta.framework.security.handler.AuthenticationEntryPointImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.web.filter.CorsFilter;
 
 /**
@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
      * 退出处理类
      */
     @Autowired
-    private LogoutSuccessHandlerImpl logoutSuccessHandler;
+    private LogoutSuccessHandler logoutSuccessHandler;
 
     /**
      * token认证过滤器

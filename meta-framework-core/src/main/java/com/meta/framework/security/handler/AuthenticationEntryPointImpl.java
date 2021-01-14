@@ -1,4 +1,4 @@
-package com.meta.framework.security.handle;
+package com.meta.framework.security.handler;
 
 import java.io.IOException;
 import java.io.Serializable;

@@ -26,6 +26,11 @@ public class SysRole extends BaseEntity
     @Excel(name = "角色序号", cellType = ColumnType.NUMERIC)
     private Long roleId;
 
+    /**
+     * 系统域
+     */
+    private Long domainId;
+
     /** 角色名称 */
     @Excel(name = "角色名称")
     private String roleName;

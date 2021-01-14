@@ -23,6 +23,11 @@ public class LoginUser implements UserDetails
     private String token;
 
     /**
+     * 系统域
+     */
+    private Long domainId;
+
+    /**
      * 登录时间
      */
     private Long loginTime;

@@ -1,16 +1,9 @@
 package com.meta.framework.aspectj.task;
 
-import com.meta.framework.act.entity.SysLogininfor;
 import com.meta.framework.act.entity.SysOperLog;
-import com.meta.framework.common.constant.Constants;
-import com.meta.framework.common.utils.LogUtils;
-import com.meta.framework.common.utils.SecurityUtils;
-import com.meta.framework.common.utils.ServletUtils;
 import com.meta.framework.common.utils.ip.AddressUtils;
-import com.meta.framework.common.utils.ip.IpUtils;
 import com.meta.framework.common.utils.spring.SpringUtils;
 import com.meta.framework.service.ISysOperLogService;
-import eu.bitwalker.useragentutils.UserAgent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;

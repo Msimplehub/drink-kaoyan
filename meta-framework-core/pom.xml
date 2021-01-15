@@ -124,6 +124,10 @@
             <groupId>com.meta</groupId>
             <artifactId>meta-act-service</artifactId>
         </dependency>-->
+        <dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+        </dependency>
 
     </dependencies>
 

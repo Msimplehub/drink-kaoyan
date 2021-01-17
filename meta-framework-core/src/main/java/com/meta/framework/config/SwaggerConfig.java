@@ -2,6 +2,8 @@ package com.meta.framework.config;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -27,6 +29,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @Configuration
 @EnableSwagger2
+@Slf4j
 public class SwaggerConfig
 {
     /** 系统基础配置 */
@@ -40,6 +43,10 @@ public class SwaggerConfig
     /** 设置请求的统一前缀 */
     @Value("${swagger.pathMapping}")
     private String pathMapping;
+
+    public SwaggerConfig(){
+        log.info("==============SwaggerConfig start==============");
+    }
 
     /**
      * 创建API

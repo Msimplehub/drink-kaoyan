@@ -5,6 +5,7 @@ import com.meta.framework.security.handler.AuthenticationEntryPointImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,6 +20,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.web.filter.CorsFilter;
+
+import javax.annotation.Resource;
 
 /**
  * spring security配置
@@ -37,8 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     /**
      * 自定义用户认证逻辑
      */
-    @Autowired
-    private UserDetailsService userDetailsService;
+/*    @Resource
+    private UserDetailsService userDetailsService;*/
     
     /**
      * 认证失败处理类
@@ -49,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     /**
      * 退出处理类
      */
-    @Autowired
+    //@Autowired
     private LogoutSuccessHandler logoutSuccessHandler;
 
     /**
@@ -126,7 +129,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .anyRequest().authenticated()
                 .and()
                 .headers().frameOptions().disable();
-        httpSecurity.logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler);
+        //httpSecurity.logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler);
         // 添加JWT filter
         httpSecurity.addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
         // 添加CORS filter
@@ -134,22 +137,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
         httpSecurity.addFilterBefore(corsFilter, LogoutFilter.class);
     }
 
-    
+
     /**
      * 强散列哈希加密实现
-     */
+     *//*
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder()
     {
         return new BCryptPasswordEncoder();
     }
 
-    /**
+    *//**
      * 身份认证接口
-     */
+     *//*
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception
     {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
-    }
+    }*/
 }

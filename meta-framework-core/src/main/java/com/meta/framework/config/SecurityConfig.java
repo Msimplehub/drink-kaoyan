@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.support.SpringFactoriesLoader;
 import org.springframework.http.HttpMethod;
@@ -70,6 +71,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
      */
     @Autowired
     protected CorsFilter corsFilter;
+
+    @Value(value = "${security.anonymous.uris}")
+    private String[] anonymousUris;
     
     /**
      * 解决 无法直接注入 AuthenticationManager
@@ -113,7 +117,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 // 过滤请求
                 .authorizeRequests()
                 // 对于登录login 验证码captchaImage 允许匿名访问
-                .antMatchers("/login", "/captchaImage","/vCode", "/vCode/login", "/vCode/register", "/vCode/findPwd").anonymous()
+                .antMatchers(anonymousUris).anonymous()
                 .antMatchers(
                         HttpMethod.GET,
                         "/*.html",

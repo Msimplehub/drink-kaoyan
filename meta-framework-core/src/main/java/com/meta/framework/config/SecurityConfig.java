@@ -7,12 +7,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.support.SpringFactoriesLoader;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,6 +25,7 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 import org.springframework.web.filter.CorsFilter;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * spring security配置
@@ -59,13 +63,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
      * token认证过滤器
      */
     @Autowired
-    private JwtAuthenticationTokenFilter authenticationTokenFilter;
+    protected JwtAuthenticationTokenFilter authenticationTokenFilter;
 
     /**
      * 跨域过滤器
      */
     @Autowired
-    private CorsFilter corsFilter;
+    protected CorsFilter corsFilter;
     
     /**
      * 解决 无法直接注入 AuthenticationManager
@@ -109,7 +113,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 // 过滤请求
                 .authorizeRequests()
                 // 对于登录login 验证码captchaImage 允许匿名访问
-                .antMatchers("/login", "/captchaImage").anonymous()
+                .antMatchers("/login", "/captchaImage","/vCode", "/vCode/login", "/vCode/register", "/vCode/findPwd").anonymous()
                 .antMatchers(
                         HttpMethod.GET,
                         "/*.html",
@@ -135,6 +139,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
         // 添加CORS filter
         httpSecurity.addFilterBefore(corsFilter, JwtAuthenticationTokenFilter.class);
         httpSecurity.addFilterBefore(corsFilter, LogoutFilter.class);
+        ClassLoader classLoader = this.getApplicationContext().getClassLoader();
+        List<SecurityConfigurerAdapter> defaultHttpConfigurers =
+                SpringFactoriesLoader.loadFactories(SecurityConfigurerAdapter.class, null);
+
+        for (SecurityConfigurerAdapter configurer : defaultHttpConfigurers) {
+           httpSecurity.apply(configurer);
+        }
     }
 
 

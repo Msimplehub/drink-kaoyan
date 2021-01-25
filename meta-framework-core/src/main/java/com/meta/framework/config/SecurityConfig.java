@@ -57,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     /**
      * 退出处理类
      */
-    //@Autowired
+    @Autowired
     private LogoutSuccessHandler logoutSuccessHandler;
 
     /**
@@ -137,7 +137,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .anyRequest().authenticated()
                 .and()
                 .headers().frameOptions().disable();
-        //httpSecurity.logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler);
+        httpSecurity.logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler);
         // 添加JWT filter
         httpSecurity.addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
         // 添加CORS filter

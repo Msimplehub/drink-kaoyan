@@ -174,7 +174,7 @@ public class TenantInvokeInterceptor implements Interceptor {
 
 		Map<String, Object> paramMap = new MapperMethod.ParamMap<>();
 		if (paramObj == null) {
-			paramMap.put(PARAM_KEY, SecurityUtils.getLoginUser().getTenantId());
+			paramMap.put(PARAM_KEY, getTenantId());
 			paramObj = paramMap;
 			// 单参数 将 参数转为 map
 		} else if (ClassUtils.isPrimitiveOrWrapper(paramObj.getClass())
@@ -182,7 +182,7 @@ public class TenantInvokeInterceptor implements Interceptor {
 				|| Number.class.isAssignableFrom(paramObj.getClass())) {
 			if (paramNames.size() == 1) {
 				paramMap.put(paramNames.iterator().next(), paramObj);
-				paramMap.put(PARAM_KEY, SecurityUtils.getLoginUser().getTenantId());
+				paramMap.put(PARAM_KEY, getTenantId());
 				paramObj = paramMap;
 			}
 		} else {
@@ -199,7 +199,6 @@ public class TenantInvokeInterceptor implements Interceptor {
 		if (parameterObject instanceof Map) {
 			Map map = (Map) parameterObject;
 			relectCollectionAddTenantId(map);
-			//map.putIfAbsent(PARAM_KEY, SecurityUtils.getLoginUser().getTenantId());
 		} else {
 			reflectObjectAddTenantId(parameterObject);
 		}
@@ -213,10 +212,22 @@ public class TenantInvokeInterceptor implements Interceptor {
 				list.forEach(x -> {
 					reflectObjectAddTenantId(x);
 				});
+			}else {
+				map.putIfAbsent(PARAM_KEY, getTenantId());
 			}
 		}catch (Exception e){
 		log.error("--------relectCollectionAddTenantId------catch error:{}", JSON.toJSONString(e));
 		}
+	}
+
+	private Long getTenantId() {
+		Long tenantId = null;
+		try{
+			tenantId = SecurityUtils.getLoginUser().getTenantId();
+		}catch (Exception e){
+			log.error("--------invoke tenant Id ------catch error:{}", JSON.toJSONString(e));
+		}
+		return tenantId;
 	}
 
 	private void reflectObjectAddTenantId(Object parameterObject) {
@@ -226,7 +237,7 @@ public class TenantInvokeInterceptor implements Interceptor {
 			if (ps != null && ps.getReadMethod() != null && ps.getWriteMethod() != null) {
 				Object value = ps.getReadMethod().invoke(parameterObject);
 				if (value == null) {
-					ps.getWriteMethod().invoke(parameterObject, SecurityUtils.getLoginUser().getTenantId());
+					ps.getWriteMethod().invoke(parameterObject, getTenantId());
 				}
 			}
 		}catch (Exception e){

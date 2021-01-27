@@ -128,7 +128,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
         ClassLoader classLoader = this.getApplicationContext().getClassLoader();
         List<SecurityConfigurerAdapter> defaultHttpConfigurers = SpringFactoriesLoader.loadFactories(SecurityConfigurerAdapter.class, null);
         for (SecurityConfigurerAdapter configurer : defaultHttpConfigurers) {
-            httpSecurity.apply(configurer);
+            httpSecurity.apply(configurer).configure(httpSecurity);
+            //configurer.configure(httpSecurity);
         }
         // 添加JWT filter
         httpSecurity.addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);

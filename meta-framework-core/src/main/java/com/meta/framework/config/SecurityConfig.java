@@ -74,19 +74,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
     @Value(value = "${security.anonymous.uris}")
     private String[] anonymousUris;
-    
-    /**
-     * 解决 无法直接注入 AuthenticationManager
-     *
-     * @return
-     * @throws Exception
-     */
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception
-    {
-        return super.authenticationManagerBean();
-    }
 
     /**
      * anyRequest          |   匹配所有请求路径
@@ -138,18 +125,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .and()
                 .headers().frameOptions().disable();
         //httpSecurity.logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler);
+        ClassLoader classLoader = this.getApplicationContext().getClassLoader();
+        List<SecurityConfigurerAdapter> defaultHttpConfigurers = SpringFactoriesLoader.loadFactories(SecurityConfigurerAdapter.class, null);
+        for (SecurityConfigurerAdapter configurer : defaultHttpConfigurers) {
+            httpSecurity.apply(configurer);
+        }
         // 添加JWT filter
         httpSecurity.addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
         // 添加CORS filter
         httpSecurity.addFilterBefore(corsFilter, JwtAuthenticationTokenFilter.class);
         httpSecurity.addFilterBefore(corsFilter, LogoutFilter.class);
-        ClassLoader classLoader = this.getApplicationContext().getClassLoader();
-        List<SecurityConfigurerAdapter> defaultHttpConfigurers =
-                SpringFactoriesLoader.loadFactories(SecurityConfigurerAdapter.class, null);
+    }
 
-        for (SecurityConfigurerAdapter configurer : defaultHttpConfigurers) {
-           httpSecurity.apply(configurer);
-        }
+    /**
+     * 解决 无法直接注入 AuthenticationManager
+     *
+     * @return
+     * @throws Exception
+     */
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception
+    {
+        return super.authenticationManagerBean();
     }
 
 

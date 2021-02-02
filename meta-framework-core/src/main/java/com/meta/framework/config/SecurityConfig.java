@@ -5,41 +5,34 @@ import com.meta.framework.security.handler.AuthenticationEntryPointImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.support.SpringFactoriesLoader;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.web.filter.CorsFilter;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
  * spring security配置
- * 
+ *
  * @author ruoyi
  */
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter
-{
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 
-    public SecurityConfig(){
+    public SecurityConfig() {
         logger.info("---------SecurityConfig start---------------");
     }
     /**
@@ -47,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
      */
 /*    @Resource
     private UserDetailsService userDetailsService;*/
-    
+
     /**
      * 认证失败处理类
      */
@@ -75,6 +68,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     @Value(value = "${security.anonymous.uris}")
     private String[] anonymousUris;
 
+    @Value(value = "${security.permit-all.uris}")
+    private String[] permitAllUris;
+
     /**
      * anyRequest          |   匹配所有请求路径
      * access              |   SpringEl表达式结果为true时可以访问
@@ -91,8 +87,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
      * authenticated       |   用户登录后可访问
      */
     @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception
-    {
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
         logger.info("----------configure start-----------");
         httpSecurity
                 // CSRF禁用，因为不使用session
@@ -105,6 +100,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .authorizeRequests()
                 // 对于登录login 验证码captchaImage 允许匿名访问
                 .antMatchers(anonymousUris).anonymous()
+                .antMatchers(this.permitAllUris).permitAll()
                 .antMatchers(
                         HttpMethod.GET,
                         "/*.html",
@@ -146,8 +142,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
      */
     @Bean
     @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception
-    {
+    public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
 

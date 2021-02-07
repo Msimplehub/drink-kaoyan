@@ -1,24 +1,24 @@
 package com.meta.framework.act.entity;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
-
-import com.google.common.collect.Lists;
-import com.meta.framework.core.BaseEntity;
-import com.meta.framework.define.RoleConstant;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.collect.Lists;
 import com.meta.framework.common.annotation.Excel;
 import com.meta.framework.common.annotation.Excel.ColumnType;
 import com.meta.framework.common.annotation.Excel.Type;
 import com.meta.framework.common.annotation.Excels;
+import com.meta.framework.core.BaseEntity;
+import com.meta.framework.define.RoleConstant;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.util.CollectionUtils;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * 用户对象 sys_user
@@ -90,6 +90,9 @@ public class SysUser extends BaseEntity
 
     /** 角色组 */
     private Long[] roleIds;
+
+    /** 域组 */
+    private Long[] domainIds;
 
     /** 岗位组 */
     private Long[] postIds;
@@ -292,6 +295,14 @@ public class SysUser extends BaseEntity
     public void setPostIds(Long[] postIds)
     {
         this.postIds = postIds;
+    }
+
+    public Long[] getDomainIds() {
+        return domainIds;
+    }
+
+    public void setDomainIds(Long[] domainIds) {
+        this.domainIds = domainIds;
     }
 
     @Override

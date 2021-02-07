@@ -92,7 +92,7 @@ public class SysUser extends BaseEntity
     private Long[] roleIds;
 
     /** 域组 */
-    private Long[] domainIds;
+    private List<Long> domainIds;
 
     /** 岗位组 */
     private Long[] postIds;

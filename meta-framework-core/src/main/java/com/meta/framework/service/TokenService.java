@@ -56,7 +56,7 @@ public class TokenService
      *
      * @return 用户信息
      */
-    public LoginUser getLoginUser(HttpServletRequest request) 
+    public LoginUser getLoginUser(HttpServletRequest request)
     {
         // 获取请求携带的令牌
         String token = getToken(request);
@@ -143,7 +143,7 @@ public class TokenService
      * @param userId
      * @return String
      */
-    private String getLastTokenByUserId(Long userId) {
+    public String getLastTokenByUserId(Long userId) {
 
         String userTokenKey = getUserTokenKey(userId.toString());
         return redisCache.getCacheObject(userTokenKey);

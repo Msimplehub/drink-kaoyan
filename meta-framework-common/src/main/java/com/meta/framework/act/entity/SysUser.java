@@ -9,6 +9,7 @@ import com.meta.framework.common.annotation.Excel.Type;
 import com.meta.framework.common.annotation.Excels;
 import com.meta.framework.core.BaseEntity;
 import com.meta.framework.define.RoleConstant;
+import lombok.Data;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.util.CollectionUtils;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
  *
  * @author ruoyi
  */
+@Data
 public class SysUser extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
@@ -295,14 +297,6 @@ public class SysUser extends BaseEntity
     public void setPostIds(Long[] postIds)
     {
         this.postIds = postIds;
-    }
-
-    public Long[] getDomainIds() {
-        return domainIds;
-    }
-
-    public void setDomainIds(Long[] domainIds) {
-        this.domainIds = domainIds;
     }
 
     @Override

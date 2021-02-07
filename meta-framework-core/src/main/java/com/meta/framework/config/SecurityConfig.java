@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
      */
 /*    @Resource
     private UserDetailsService userDetailsService;*/
-    
+                                                                                                         
     /**
      * 认证失败处理类
      */

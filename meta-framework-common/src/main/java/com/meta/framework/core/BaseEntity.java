@@ -1,13 +1,13 @@
 package com.meta.framework.core;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.meta.framework.copy.Copyable;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.meta.framework.copy.Copyable;
-import lombok.Data;
 
 /**
  * Entity基类
@@ -44,11 +44,9 @@ public class BaseEntity extends Copyable implements Serializable
     private String remark;
 
     /** 开始时间 */
-    @JsonIgnore
     private String beginTime;
 
     /** 结束时间 */
-    @JsonIgnore
     private String endTime;
 
     /** 请求参数 */

@@ -198,6 +198,7 @@ public class TenantInvokeInterceptor implements Interceptor {
 		// 如果参数是bean，反射设置值
 		if (parameterObject instanceof Map) {
 			Map map = (Map) parameterObject;
+			map.putIfAbsent(PARAM_KEY, getTenantId());
 			relectCollectionAddTenantId(map);
 		} else {
 			reflectObjectAddTenantId(parameterObject);

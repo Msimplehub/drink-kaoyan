@@ -10,13 +10,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.meta.framework.common.config.MetaConfig;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.ApiKey;
-import springfox.documentation.service.AuthorizationScope;
-import springfox.documentation.service.Contact;
-import springfox.documentation.service.SecurityReference;
+import springfox.documentation.schema.ModelRef;
+import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -54,6 +52,12 @@ public class SwaggerConfig
     @Bean
     public Docket createRestApi()
     {
+
+        var parameterBuilder = new ParameterBuilder();
+        parameterBuilder.name("x-domain-key").description("域key").modelRef(new ModelRef("string")).parameterType("header").defaultValue("admin").required(true).build();
+        List<Parameter> parameters = new ArrayList<>();
+        parameters.add(parameterBuilder.build());
+
         return new Docket(DocumentationType.SWAGGER_2)
                 // 是否启用Swagger
                 .enable(enabled)
@@ -69,6 +73,7 @@ public class SwaggerConfig
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build()
+                .globalOperationParameters(parameters)
                 /* 设置安全模式，swagger可以设置访问token */
                 .securitySchemes(securitySchemes())
                 .securityContexts(securityContexts())
@@ -82,7 +87,6 @@ public class SwaggerConfig
     {
         List<ApiKey> apiKeyList = new ArrayList<ApiKey>();
         apiKeyList.add(new ApiKey("Authorization", "Authorization", "header"));
-        apiKeyList.add(new ApiKey("x-domain-key", "x-domain-key", "header"));
         return apiKeyList;
     }
 

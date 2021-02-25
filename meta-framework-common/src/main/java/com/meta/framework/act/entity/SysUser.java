@@ -1,5 +1,6 @@
 package com.meta.framework.act.entity;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Lists;
@@ -58,6 +59,11 @@ public class SysUser extends BaseEntity
     /** 用户性别 */
     @Excel(name = "用户性别", readConverterExp = "0=男,1=女,2=未知")
     private String sex;
+
+    /**
+     * 扩展字段
+     */
+    private String extra;
 
     /** 用户头像 */
     private String avatar;

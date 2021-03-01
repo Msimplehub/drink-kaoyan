@@ -59,7 +59,16 @@ public class TokenService
     public LoginUser getLoginUser(HttpServletRequest request)
     {
         // 获取请求携带的令牌
-        String token = getToken(request);
+        return getLoginUser(getToken(request));
+}
+
+    /**
+     * 获取用户身份信息
+     *
+     * @return 用户信息
+     */
+    public LoginUser getLoginUser(String token)
+    {
         if (StringUtils.isNotEmpty(token))
         {
             Claims claims = parseToken(token);

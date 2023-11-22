@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.meta.crm.core.mapper.CrmBusinessContactRelateMapper">
+
+    <resultMap type="com.meta.crm.intf.entity.CrmBusinessContactRelate" id="crmBusinessContactRelateMap">
+        <result property="id" column="id"/>
+        <result property="businessId" column="business_id"/>
+        <result property="type" column="type"/>
+        <result property="contactId" column="contact_id"/>
+        <result property="tenantId" column="tenant_id"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <sql id="Base_Column_List">
+                    id,                    business_id,                    type,                    contact_id,                    tenant_id,                    del_flag            </sql>
+
+    <insert id="insertCrmBusinessContactRelate" parameterType="com.meta.crm.intf.entity.CrmBusinessContactRelate"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO crm_business_contact_relate
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="businessId != null">
+                business_id,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="contactId != null">
+                contact_id,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+        </trim>
+        VALUE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="businessId != null">
+                #{businessId},
+            </if>
+            <if test="type != null">
+                #{type},
+            </if>
+            <if test="contactId != null">
+                #{contactId},
+            </if>
+            <if test="tenantId != null">
+                #{tenantId},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="batchInsertCrmBusinessContactRelate" parameterType="com.meta.crm.intf.entity.CrmBusinessContactRelate"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO crm_business_contact_relate
+        (business_id, type, contact_id, tenant_id, del_flag)
+        VALUES
+        <foreach collection="list" separator="," item="item">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="item.businessId != null">
+                    #{item.businessId},
+                </if>
+                <if test="item.type != null">
+                    #{item.type},
+                </if>
+                <if test="item.contactId != null">
+                    #{item.contactId},
+                </if>
+                <if test="item.tenantId != null">
+                    #{item.tenantId},
+                </if>
+                <if test="item.delFlag != null">
+                    #{item.delFlag},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <update id="updateCrmBusinessContactRelate" parameterType="com.meta.crm.intf.entity.CrmBusinessContactRelate">
+        UPDATE crm_business_contact_relate
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="businessId != null">
+                business_id = #{businessId},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="contactId != null">
+                contact_id = #{contactId},
+            </if>
+            <if test="tenantId != null">
+                tenant_id = #{tenantId},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag},
+            </if>
+        </set>
+        <where>
+            1 = 1
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="businessId != null">
+                and business_id = #{businessId}
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+            <if test="contactId != null">
+                and contact_id = #{contactId}
+            </if>
+            <if test="tenantId != null">
+                and tenant_id = #{tenantId}
+            </if>
+            <if test="delFlag != null">
+                and del_flag = #{delFlag}
+            </if>
+        </where>
+    </update>
+
+    <update id="updateCrmBusinessContactRelateByPk" parameterType="com.meta.crm.intf.entity.CrmBusinessContactRelate">
+        UPDATE crm_business_contact_relate
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="businessId != null">
+                business_id = #{businessId},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="contactId != null">
+                contact_id = #{contactId},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag},
+            </if>
+        </set>
+        <where>
+            id = #{id}
+            and tenant_id = #{tenantId}
+        </where>
+    </update>
+
+    <select id="listCrmBusinessContactRelate" parameterType="com.meta.crm.intf.req.ro.CrmBusinessContactRelateRo"
+            resultMap="crmBusinessContactRelateMap">
+        select
+        <include refid="Base_Column_List"/>
+        from crm_business_contact_relate
+        <where>
+            1 = 1 and tenant_id=#{tenantId}
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="businessId != null">
+                and business_id = #{businessId}
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+            <if test="contactId != null">
+                and contact_id = #{contactId}
+            </if>
+            <if test="tenantId != null">
+                and tenant_id = #{tenantId}
+            </if>
+            <if test="delFlag != null">
+                and del_flag = #{delFlag}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="countCrmBusinessContactRelate" parameterType="com.meta.crm.intf.req.ro.CrmBusinessContactRelateRo"
+            resultType="java.lang.Integer">
+        select
+        count(1)
+        from crm_business_contact_relate
+        <where>
+            tenant_id=#{tenantId} and del_flag=0
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="businessId != null">
+                and business_id = #{businessId}
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+            <if test="contactId != null">
+                and contact_id = #{contactId}
+            </if>
+        </where>
+    </select>
+
+</mapper>

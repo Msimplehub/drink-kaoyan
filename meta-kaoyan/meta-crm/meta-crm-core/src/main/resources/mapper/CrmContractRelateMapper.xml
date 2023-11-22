@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.meta.crm.core.mapper.CrmContractRelateMapper">
+
+    <resultMap type="com.meta.crm.intf.entity.CrmContractRelate" id="crmContractRelateMap">
+        <result property="id" column="id"/>
+        <result property="contractId" column="contract_id"/>
+        <result property="targetType" column="target_type"/>
+        <result property="targetId" column="target_id"/>
+        <result property="tenantId" column="tenant_id"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <sql id="Base_Column_List">
+                    id,                    contract_id,                    target_type,                    target_id,                    tenant_id,                    del_flag,                    create_by,                    create_time,                    update_by,                    update_time,                    remark            </sql>
+
+    <insert id="insertCrmContractRelate" parameterType="com.meta.crm.intf.entity.CrmContractRelate"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO crm_contract_relate
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="contractId != null">
+                contract_id,
+            </if>
+            <if test="targetType != null">
+                target_type,
+            </if>
+            <if test="targetId != null">
+                target_id,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        VALUE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="contractId != null">
+                #{contractId},
+            </if>
+            <if test="targetType != null">
+                #{targetType},
+            </if>
+            <if test="targetId != null">
+                #{targetId},
+            </if>
+            <if test="tenantId != null">
+                #{tenantId},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag},
+            </if>
+            <if test="createBy != null">
+                #{createBy},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+            <if test="remark != null">
+                #{remark},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="batchInsertCrmContractRelate" parameterType="com.meta.crm.intf.entity.CrmContractRelate"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO crm_contract_relate
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="contractId != null">
+                contract_id,
+            </if>
+            <if test="targetType != null">
+                target_type,
+            </if>
+            <if test="targetId != null">
+                target_id,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        VALUES
+        <foreach collection="list" separator="," item="crmContractRelate">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">
+                    #{id},
+                </if>
+                <if test="contractId != null">
+                    #{contractId},
+                </if>
+                <if test="targetType != null">
+                    #{targetType},
+                </if>
+                <if test="targetId != null">
+                    #{targetId},
+                </if>
+                <if test="tenantId != null">
+                    #{tenantId},
+                </if>
+                <if test="delFlag != null">
+                    #{delFlag},
+                </if>
+                <if test="createBy != null">
+                    #{createBy},
+                </if>
+                <if test="createTime != null">
+                    #{createTime},
+                </if>
+                <if test="updateBy != null">
+                    #{updateBy},
+                </if>
+                <if test="updateTime != null">
+                    #{updateTime},
+                </if>
+                <if test="remark != null">
+                    #{remark},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <update id="updateCrmContractRelate" parameterType="com.meta.crm.intf.entity.CrmContractRelate">
+        UPDATE crm_contract_relate
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="contractId != null">
+                contract_id = #{contractId},
+            </if>
+            <if test="targetType != null">
+                target_type = #{targetType},
+            </if>
+            <if test="targetId != null">
+                target_id = #{targetId},
+            </if>
+            <if test="tenantId != null">
+                tenant_id = #{tenantId},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+        </set>
+        <where>
+            1 = 1
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="contractId != null">
+                and contract_id = #{contractId}
+            </if>
+            <if test="targetType != null">
+                and target_type = #{targetType}
+            </if>
+            <if test="targetId != null">
+                and target_id = #{targetId}
+            </if>
+            <if test="tenantId != null">
+                and tenant_id = #{tenantId}
+            </if>
+            <if test="delFlag != null">
+                and del_flag = #{delFlag}
+            </if>
+            <if test="createBy != null">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null">
+                and remark = #{remark}
+            </if>
+        </where>
+    </update>
+
+    <update id="updateCrmContractRelateByPk" parameterType="com.meta.crm.intf.entity.CrmContractRelate">
+        UPDATE crm_contract_relate
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="contractId != null">
+                contract_id = #{contractId},
+            </if>
+            <if test="targetType != null">
+                target_type = #{targetType},
+            </if>
+                target_id = #{targetId},
+            <if test="delFlag != null">
+                del_flag = #{delFlag},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+        </set>
+        <where>
+            id = #{id} and tenant_id=#{tenantId}
+        </where>
+    </update>
+
+    <select id="listCrmContractRelate" parameterType="com.meta.crm.intf.req.ro.CrmContractRelateRo" resultMap="crmContractRelateMap">
+        select
+        <include refid="Base_Column_List"/>
+        from crm_contract_relate
+        <where>
+            1 = 1 and tenant_id=#{tenantId} and del_flag=0
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="contractId != null">
+                and contract_id = #{contractId}
+            </if>
+            <if test="targetType != null">
+                and target_type = #{targetType}
+            </if>
+            <if test="targetId != null">
+                and target_id = #{targetId}
+            </if>
+            <if test="createBy != null">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null">
+                and remark = #{remark}
+            </if>
+        </where>
+    </select>
+
+</mapper>

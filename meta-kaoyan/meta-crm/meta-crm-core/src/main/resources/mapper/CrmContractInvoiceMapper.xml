@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.meta.crm.core.mapper.CrmContractInvoiceMapper">
+
+    <select id="queryList" parameterType="com.meta.crm.intf.req.invoice.CrmInvoiceListQry"
+            resultType="com.meta.crm.intf.res.vo.invoice.CrmInvoiceListVo">
+        SELECT
+        ci.id AS id,
+        ci.invoice_num AS invoiceNum,
+        c.id AS contractId,
+        c.contract_name AS contractName,
+        cc.id AS customerId,
+        cc.customer_name AS customerName,
+        ci.invoice_title AS invoiceTitle,
+        ci.title_type AS titleType,
+        ci.invoice_create_type as invoiceCreateType,
+        ci.invoice_type AS invoiceType,
+        ci.company_tax_num AS companyTaxNum,
+        ci.invoice_amount AS invoiceAmount,
+        ci.invoice_date AS invoiceDate,
+        ci.create_by AS createUserId,
+        ci.create_time AS createTime
+        FROM
+        contract_invoice ci
+        LEFT JOIN contract c ON c.id = ci.contract_id
+        LEFT JOIN crm_customer cc ON ci.customer_id = cc.id
+        <where>
+            ci.del_flag = 0
+            AND c.del_flag = 0
+            AND cc.del_flag = 0
+            and ci.tenant_id=#{tenantId}
+            and c.tenant_id=#{tenantId}
+            and cc.tenant_id=#{tenantId}
+            <if test="customerId != null">
+                and c.customer_id = #{customerId} and ci.customer_id=#{customerId} and c.id=#{customerId}
+            </if>
+            <if test="contractId != null">
+                and c.id = #{contractId} and ci.contract_id=#{contractId}
+            </if>
+            <if test="contractNameReg != null">
+                and c.contract_name like concat('%', #{contractNameReg}, '%')
+            </if>
+            <if test="customerNameReg != null">
+                and cc.customer_name like concat('%', #{customerNameReg}, '%')
+            </if>
+            <if test="createTimeStart != null">
+                and ci.create_time &gt;= #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                and ci.create_time &lt;= #{createTimeEnd}
+            </if>
+            <if test="invoiceDateStart != null">
+                and ci.invoice_date &gt;= #{invoiceDateStart}
+            </if>
+            <if test="invoiceDateEnd != null">
+                and ci.invoice_date &lt;= #{invoiceDateEnd}
+            </if>
+        </where>
+        order by ci.create_time desc, ci.id desc
+    </select>
+
+    <select id="queryListByCustomerId" parameterType="com.meta.crm.intf.req.invoice.CrmInvoiceListByCustomerIdQry"
+            resultType="com.meta.crm.intf.res.vo.invoice.CrmInvoiceListByCustomerIdVo">
+        select
+            ci.id as id,
+            c.id as contractId,
+            c.contract_name as contractName,
+            ci.invoice_title as invoiceTitle,
+            ci.invoice_type as invoiceType,
+            ci.invoice_amount as invoiceAmount,
+            ci.invoice_date as invoiceDate
+        from contract c
+        left join contract_invoice ci
+        on c.id=ci.contract_id
+        where c.del_flag=0 and ci.del_flag=0
+        and c.tenant_id=#{tenantId} and ci.tenant_id=#{tenantId}
+        <if test="customerId!=null">
+            and c.customer_id=#{customerId} and ci.customer_id=#{customerId}
+        </if>
+        <if test="contractId!=null">
+            and c.id=#{contractId} and ci.contract_id=#{contractId}
+        </if>
+        order by ci.create_time desc, ci.id desc
+    </select>
+
+</mapper>

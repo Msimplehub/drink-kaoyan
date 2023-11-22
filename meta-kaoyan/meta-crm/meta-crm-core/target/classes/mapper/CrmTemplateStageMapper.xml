@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.meta.crm.core.mapper.CrmTemplateStageMapper">
+
+    <resultMap type="com.meta.crm.intf.entity.CrmTemplateStage" id="crmTemplateStageMap">
+        <result property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="templateCode" column="template_code"/>
+        <result property="templateId" column="template_id"/>
+        <result property="name" column="name"/>
+        <result property="sort" column="sort"/>
+        <result property="tenantId" column="tenant_id"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <sql id="Base_Column_List">
+                    id,                    code,                    template_code,                    template_id,                    name,                    sort,                    tenant_id,                    del_flag,                    create_by,                    create_time,                    update_by,                    update_time,                    remark            </sql>
+
+    <insert id="insertCrmTemplateStage" parameterType="com.meta.crm.intf.entity.CrmTemplateStage"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO crm_template_stage
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="code != null">
+                code,
+            </if>
+            <if test="templateCode != null">
+                template_code,
+            </if>
+            <if test="templateId != null">
+                template_id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        VALUE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="code != null">
+                #{code},
+            </if>
+            <if test="templateCode != null">
+                #{templateCode},
+            </if>
+            <if test="templateId != null">
+                #{templateId},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="sort != null">
+                #{sort},
+            </if>
+            <if test="tenantId != null">
+                #{tenantId},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag},
+            </if>
+            <if test="createBy != null">
+                #{createBy},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+            <if test="remark != null">
+                #{remark},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="batchInsertCrmTemplateStage" parameterType="com.meta.crm.intf.entity.CrmTemplateStage"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO crm_template_stage
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="code != null">
+                code,
+            </if>
+            <if test="templateCode != null">
+                template_code,
+            </if>
+            <if test="templateId != null">
+                template_id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        VALUES
+        <foreach collection="list" separator="," item="crmTemplateStage">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">
+                    #{id},
+                </if>
+                <if test="code != null">
+                    #{code},
+                </if>
+                <if test="templateCode != null">
+                    #{templateCode},
+                </if>
+                <if test="templateId != null">
+                    #{templateId},
+                </if>
+                <if test="name != null">
+                    #{name},
+                </if>
+                <if test="sort != null">
+                    #{sort},
+                </if>
+                <if test="tenantId != null">
+                    #{tenantId},
+                </if>
+                <if test="delFlag != null">
+                    #{delFlag},
+                </if>
+                <if test="createBy != null">
+                    #{createBy},
+                </if>
+                <if test="createTime != null">
+                    #{createTime},
+                </if>
+                <if test="updateBy != null">
+                    #{updateBy},
+                </if>
+                <if test="updateTime != null">
+                    #{updateTime},
+                </if>
+                <if test="remark != null">
+                    #{remark},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <update id="updateCrmTemplateStage" parameterType="com.meta.crm.intf.entity.CrmTemplateStage">
+        UPDATE crm_template_stage
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="code != null">
+                code = #{code},
+            </if>
+            <if test="templateCode != null">
+                template_code = #{templateCode},
+            </if>
+            <if test="templateId != null">
+                template_id = #{templateId},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="sort != null">
+                sort = #{sort},
+            </if>
+            <if test="tenantId != null">
+                tenant_id = #{tenantId},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+        </set>
+        <where>
+            1 = 1
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="code != null">
+                and code = #{code}
+            </if>
+            <if test="templateCode != null">
+                and template_code = #{templateCode}
+            </if>
+            <if test="templateId != null">
+                and template_id = #{templateId}
+            </if>
+            <if test="name != null">
+                and name = #{name}
+            </if>
+            <if test="sort != null">
+                and sort = #{sort}
+            </if>
+            <if test="tenantId != null">
+                and tenant_id = #{tenantId}
+            </if>
+            <if test="delFlag != null">
+                and del_flag = #{delFlag}
+            </if>
+            <if test="createBy != null">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null">
+                and remark = #{remark}
+            </if>
+        </where>
+    </update>
+
+    <update id="updateCrmTemplateStageByPk" parameterType="com.meta.crm.intf.entity.CrmTemplateStage">
+        UPDATE crm_template_stage
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="code != null">
+                code = #{code},
+            </if>
+            <if test="templateCode != null">
+                template_code = #{templateCode},
+            </if>
+            <if test="templateId != null">
+                template_id = #{templateId},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="sort != null">
+                sort = #{sort},
+            </if>
+            <if test="tenantId != null">
+                tenant_id = #{tenantId},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+        </set>
+        <where>
+            id = #{id}
+            and tenant_id = #{tenantId}
+        </where>
+    </update>
+
+    <select id="listCrmTemplateStage" parameterType="com.meta.crm.intf.req.ro.CrmTemplateStageRo"
+            resultMap="crmTemplateStageMap">
+        select
+        <include refid="Base_Column_List"/>
+        from crm_template_stage
+        <where>
+            del_flag=0 and tenant_id = #{tenantId}
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="code != null">
+                and code = #{code}
+            </if>
+            <if test="templateCode != null">
+                and template_code = #{templateCode}
+            </if>
+            <if test="templateId != null">
+                and template_id = #{templateId}
+            </if>
+            <if test="name != null">
+                and name = #{name}
+            </if>
+            <if test="sort != null">
+                and sort = #{sort}
+            </if>
+            <if test="tenantId != null">
+                and tenant_id = #{tenantId}
+            </if>
+            <if test="createBy != null">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null">
+                and remark = #{remark}
+            </if>
+            <if test="stageCodes != null">
+                and code in
+                <foreach item="stageCode" collection="stageCodes" open="(" separator="," close=")">
+                    #{stageCode}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="queryDefaultStage" parameterType="com.meta.crm.intf.req.ro.CrmTemplateStageRo"
+            resultMap="crmTemplateStageMap">
+        SELECT
+            cts.*
+        FROM
+            crm_template ct
+            LEFT JOIN crm_template_stage cts ON ct.id = cts.template_id
+        WHERE
+            ct.del_flag = 0
+            AND cts.del_flag = 0
+            AND ct.`status` = 1
+            AND ct.tenant_id = #{tenantId}
+            AND cts.tenant_id = #{tenantId}
+    </select>
+
+</mapper>

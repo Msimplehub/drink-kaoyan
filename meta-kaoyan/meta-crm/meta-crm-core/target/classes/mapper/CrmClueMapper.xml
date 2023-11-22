@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.meta.crm.core.mapper.CrmClueMapper">
+
+    <resultMap type="com.meta.crm.intf.entity.CrmClue" id="crmClueMap">
+        <result property="id" column="id"/>
+        <result property="clueSource" column="clue_source"/>
+        <result property="clueStatus" column="clue_status"/>
+        <result property="informantName" column="informant_name"/>
+        <result property="informantMobile" column="informant_mobile"/>
+        <result property="informantWechat" column="informant_wechat"/>
+        <result property="companyId" column="company_id"/>
+        <result property="companyName" column="company_name"/>
+        <result property="tenantId" column="tenant_id"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <sql id="Base_Column_List">
+                    id, clue_source, clue_status, informant_name, informant_mobile, informant_wechat, company_id, company_name, tenant_id, del_flag,
+                    create_by, create_time, update_by, update_time, remark
+                    </sql>
+
+    <insert id="insertCrmClue" parameterType="com.meta.crm.intf.entity.CrmClue" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO crm_clue
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="clueSource != null">
+                clue_source,
+            </if>
+            <if test="clueStatus != null">
+                clue_status,
+            </if>
+            <if test="informantName != null">
+                informant_name,
+            </if>
+            <if test="informantMobile != null">
+                informant_mobile,
+            </if>
+            <if test="informantWechat != null">
+                informant_wechat,
+            </if>
+            <if test="companyId != null">
+                company_id,
+            </if>
+            <if test="companyName != null">
+                company_name,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        VALUE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="clueSource != null">
+                #{clueSource},
+            </if>
+            <if test="clueStatus != null">
+                #{clueStatus},
+            </if>
+            <if test="informantName != null">
+                #{informantName},
+            </if>
+            <if test="informantMobile != null">
+                #{informantMobile},
+            </if>
+            <if test="informantWechat != null">
+                #{informantWechat},
+            </if>
+            <if test="companyId != null">
+                #{companyId},
+            </if>
+            <if test="companyName != null">
+                #{companyName},
+            </if>
+            <if test="tenantId != null">
+                #{tenantId},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag},
+            </if>
+            <if test="createBy != null">
+                #{createBy},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+            <if test="remark != null">
+                #{remark},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="batchInsertCrmClue" parameterType="com.meta.crm.intf.entity.CrmClue" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO crm_clue
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="clueSource != null">
+                clue_source,
+            </if>
+            <if test="clueStatus != null">
+                clue_status,
+            </if>
+            <if test="informantName != null">
+                informant_name,
+            </if>
+            <if test="informantMobile != null">
+                informant_mobile,
+            </if>
+            <if test="informantWechat != null">
+                informant_wechat,
+            </if>
+            <if test="companyId != null">
+                company_id,
+            </if>
+            <if test="companyName != null">
+                company_name,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        VALUES
+        <foreach collection="list" separator="," item="crmClue">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">
+                    #{id},
+                </if>
+                <if test="clueSource != null">
+                    #{clueSource},
+                </if>
+                <if test="clueStatus != null">
+                    #{clueStatus},
+                </if>
+                <if test="informantName != null">
+                    #{informantName},
+                </if>
+                <if test="informantMobile != null">
+                    #{informantMobile},
+                </if>
+                <if test="informantWechat != null">
+                    #{informantWechat},
+                </if>
+                <if test="companyId != null">
+                    #{companyId},
+                </if>
+                <if test="companyName != null">
+                    #{companyName},
+                </if>
+                <if test="tenantId != null">
+                    #{tenantId},
+                </if>
+                <if test="delFlag != null">
+                    #{delFlag},
+                </if>
+                <if test="createBy != null">
+                    #{createBy},
+                </if>
+                <if test="createTime != null">
+                    #{createTime},
+                </if>
+                <if test="updateBy != null">
+                    #{updateBy},
+                </if>
+                <if test="updateTime != null">
+                    #{updateTime},
+                </if>
+                <if test="remark != null">
+                    #{remark},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <update id="updateCrmClue" parameterType="com.meta.crm.intf.entity.CrmClue">
+        UPDATE crm_clue
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="clueSource != null">
+                clue_source = #{clueSource},
+            </if>
+            <if test="clueStatus != null">
+                clue_status = #{clueStatus},
+            </if>
+            <if test="informantName != null">
+                informant_name = #{informantName},
+            </if>
+            <if test="informantMobile != null">
+                informant_mobile = #{informantMobile},
+            </if>
+            <if test="informantWechat != null">
+                informant_wechat = #{informantWechat},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId},
+            </if>
+            <if test="companyName != null">
+                company_name = #{companyName},
+            </if>
+            <if test="tenantId != null">
+                tenant_id = #{tenantId},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+        </set>
+        <where>
+            1 = 1
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="clueSource != null">
+                and clue_source = #{clueSource}
+            </if>
+            <if test="clueStatus != null">
+                and clue_status = #{clueStatus}
+            </if>
+            <if test="informantName != null">
+                and informant_name = #{informantName}
+            </if>
+            <if test="informantMobile != null">
+                and informant_mobile = #{informantMobile}
+            </if>
+            <if test="informantWechat != null">
+                and informant_wechat = #{informantWechat}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="companyName != null">
+                and company_name = #{companyName}
+            </if>
+            <if test="tenantId != null">
+                and tenant_id = #{tenantId}
+            </if>
+            <if test="delFlag != null">
+                and del_flag = #{delFlag}
+            </if>
+            <if test="createBy != null">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null">
+                and remark = #{remark}
+            </if>
+        </where>
+    </update>
+
+    <update id="updateCrmClueByPk" parameterType="com.meta.crm.intf.entity.CrmClue">
+        UPDATE crm_clue
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="clueSource != null">
+                clue_source = #{clueSource},
+            </if>
+            <if test="clueStatus != null">
+                clue_status = #{clueStatus},
+            </if>
+            <if test="informantName != null">
+                informant_name = #{informantName},
+            </if>
+            <if test="informantMobile != null">
+                informant_mobile = #{informantMobile},
+            </if>
+            <if test="informantWechat != null">
+                informant_wechat = #{informantWechat},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId},
+            </if>
+            <if test="companyName != null">
+                company_name = #{companyName},
+            </if>
+            <if test="tenantId != null">
+                tenant_id = #{tenantId},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+        </set>
+        <where>
+            id = #{id}
+            and tenant_id = #{tenantId}
+        </where>
+    </update>
+
+    <select id="listCrmClue" parameterType="com.meta.crm.intf.req.ro.CrmClueRo" resultMap="crmClueMap">
+        select
+        <include refid="Base_Column_List"/>
+        from crm_clue
+        <where>
+            del_flag=0 and tenant_id=#{tenantId}
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="clueSource != null">
+                and clue_source = #{clueSource}
+            </if>
+            <if test="clueStatus != null">
+                and clue_status = #{clueStatus}
+            </if>
+            <if test="informantName != null">
+                and informant_name = #{informantName}
+            </if>
+            <if test="informantMobile != null">
+                and informant_mobile = #{informantMobile}
+            </if>
+            <if test="informantWechat != null">
+                and informant_wechat = #{informantWechat}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="companyName != null">
+                and company_name = #{companyName}
+            </if>
+            <if test="delFlag != null">
+                and del_flag = #{delFlag}
+            </if>
+            <if test="createBy != null">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null">
+                and remark = #{remark}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="queryList" parameterType="com.meta.crm.intf.req.ro.CrmClueRo"
+            resultType="com.meta.crm.intf.res.vo.clue.ClueListVo">
+        select
+        cc.id as id, cc.clue_source as clueSource, cc.informant_name as informantName, cc.company_name as companyName,
+        cc.informant_mobile as informantMobile,
+        cc.clue_status as clueStatus, ca.manager_id as managerId, cc.create_by as createBy, cc.create_time as createTime
+        from crm_clue cc left join crm_assign ca
+        on cc.id = ca.target_id and ca.target_type = 'clue'
+        and ca.manager_type = 0 and ca.assign_role = 1
+        <where>
+            cc.del_flag = 0 and cc.tenant_id=#{tenantId} and ca.tenant_id=#{tenantId}
+            <if test="mixedName != null and mixedName!=''">
+                and (cc.informant_name like CONCAT('%',#{mixedName},'%') or
+                cc.company_name like CONCAT('%',#{mixedName},'%'))
+            </if>
+            <if test="informantNameRex != null and informantNameRex!=''">
+                and cc.informant_name like CONCAT('%',#{informantNameRex},'%')
+            </if>
+            <if test="companyNameRex != null and companyNameRex!=''">
+                and cc.company_name like CONCAT('%',#{companyNameRex},'%')
+            </if>
+            <if test="informantMobileRex != null and informantMobileRex!=''">
+                and cc.informant_mobile like CONCAT('%',#{informantMobileRex},'%')
+            </if>
+            <if test="clueStatus != null and clueStatus!=''">
+                and cc.clue_status = #{clueStatus}
+            </if>
+            <if test="startDate != null">
+                and cc.create_time &gt;= #{startDate}
+            </if>
+            <if test="endDate != null">
+                and cc.create_time &lt;= #{endDate}
+            </if>
+            <if test="managerId != null">
+                and ca.manager_id = #{managerId}
+            </if>
+        </where>
+        order by cc.create_time DESC ,
+        cc.id DESC
+    </select>
+
+    <select id="checkCluePhoneNum" parameterType="com.meta.crm.intf.req.ro.CrmClueRo" resultMap="crmClueMap">
+        select
+        <include refid="Base_Column_List"/>
+        from crm_clue
+        <where>
+            del_flag=0 and tenant_id=#{tenantId}
+            <if test="id != null">
+                and id != #{id}
+            </if>
+            <if test="informantMobile != null">
+                and informant_mobile = #{informantMobile}
+            </if>
+            <if test="companyName != null">
+                and company_name = #{companyName}
+            </if>
+        </where>
+    </select>
+
+</mapper>

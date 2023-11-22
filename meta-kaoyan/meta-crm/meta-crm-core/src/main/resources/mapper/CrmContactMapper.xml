@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.meta.crm.core.mapper.CrmContactMapper">
+
+    <resultMap type="com.meta.crm.intf.entity.CrmContact" id="crmContactMap">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="customerId" column="customer_id"/>
+        <result property="apartment" column="apartment"/>
+        <result property="position" column="position"/>
+        <result property="mobile" column="mobile"/>
+        <result property="wechat" column="wechat"/>
+        <result property="sex" column="sex"/>
+        <result property="birthday" column="birthday"/>
+        <result property="email" column="email"/>
+        <result property="standScore" column="stand_score"/>
+        <result property="extInfo" column="ext_info"/>
+        <result property="tenantId" column="tenant_id"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <sql id="Base_Column_List">
+                    id,                    name,                    customer_id,                    apartment,                    position,                    mobile,                    wechat,                    sex,                    birthday,                    email,                    stand_score,                    ext_info,                    tenant_id,                    del_flag,                    create_by,                    create_time,                    update_by,                    update_time,                    remark            </sql>
+
+    <insert id="insertCrmContact" parameterType="com.meta.crm.intf.entity.CrmContact" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO crm_contact
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="customerId != null">
+                customer_id,
+            </if>
+            <if test="apartment != null">
+                apartment,
+            </if>
+            <if test="position != null">
+                position,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="wechat != null">
+                wechat,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="standScore != null">
+                stand_score,
+            </if>
+            <if test="extInfo != null">
+                ext_info,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        VALUE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="customerId != null">
+                #{customerId},
+            </if>
+            <if test="apartment != null">
+                #{apartment},
+            </if>
+            <if test="position != null">
+                #{position},
+            </if>
+            <if test="mobile != null">
+                #{mobile},
+            </if>
+            <if test="wechat != null">
+                #{wechat},
+            </if>
+            <if test="sex != null">
+                #{sex},
+            </if>
+            <if test="birthday != null">
+                #{birthday},
+            </if>
+            <if test="email != null">
+                #{email},
+            </if>
+            <if test="standScore != null">
+                #{standScore},
+            </if>
+            <if test="extInfo != null">
+                #{extInfo},
+            </if>
+            <if test="tenantId != null">
+                #{tenantId},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag},
+            </if>
+            <if test="createBy != null">
+                #{createBy},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+            <if test="remark != null">
+                #{remark},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="batchInsertCrmContact" parameterType="com.meta.crm.intf.entity.CrmContact" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO crm_contact
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="customerId != null">
+                customer_id,
+            </if>
+            <if test="apartment != null">
+                apartment,
+            </if>
+            <if test="position != null">
+                position,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="wechat != null">
+                wechat,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="standScore != null">
+                stand_score,
+            </if>
+            <if test="extInfo != null">
+                ext_info,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        VALUES
+        <foreach collection="list" separator="," item="crmContact">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">
+                    #{id},
+                </if>
+                <if test="name != null">
+                    #{name},
+                </if>
+                <if test="customerId != null">
+                    #{customerId},
+                </if>
+                <if test="apartment != null">
+                    #{apartment},
+                </if>
+                <if test="position != null">
+                    #{position},
+                </if>
+                <if test="mobile != null">
+                    #{mobile},
+                </if>
+                <if test="wechat != null">
+                    #{wechat},
+                </if>
+                <if test="sex != null">
+                    #{sex},
+                </if>
+                <if test="birthday != null">
+                    #{birthday},
+                </if>
+                <if test="email != null">
+                    #{email},
+                </if>
+                <if test="standScore != null">
+                    #{standScore},
+                </if>
+                <if test="extInfo != null">
+                    #{extInfo},
+                </if>
+                <if test="tenantId != null">
+                    #{tenantId},
+                </if>
+                <if test="delFlag != null">
+                    #{delFlag},
+                </if>
+                <if test="createBy != null">
+                    #{createBy},
+                </if>
+                <if test="createTime != null">
+                    #{createTime},
+                </if>
+                <if test="updateBy != null">
+                    #{updateBy},
+                </if>
+                <if test="updateTime != null">
+                    #{updateTime},
+                </if>
+                <if test="remark != null">
+                    #{remark},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <update id="updateCrmContact" parameterType="com.meta.crm.intf.entity.CrmContact">
+        UPDATE crm_contact
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="customerId != null">
+                customer_id = #{customerId},
+            </if>
+            <if test="apartment != null">
+                apartment = #{apartment},
+            </if>
+            <if test="position != null">
+                position = #{position},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile},
+            </if>
+            <if test="wechat != null">
+                wechat = #{wechat},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="standScore != null">
+                stand_score = #{standScore},
+            </if>
+            <if test="extInfo != null">
+                ext_info = #{extInfo},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+        </set>
+        <where>
+            1 = 1
+             and tenant_id = #{tenantId}
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null">
+                and name = #{name}
+            </if>
+            <if test="customerId != null">
+                and customer_id = #{customerId}
+            </if>
+            <if test="apartment != null">
+                and apartment = #{apartment}
+            </if>
+            <if test="position != null">
+                and position = #{position}
+            </if>
+            <if test="mobile != null">
+                and mobile = #{mobile}
+            </if>
+            <if test="wechat != null">
+                and wechat = #{wechat}
+            </if>
+            <if test="sex != null">
+                and sex = #{sex}
+            </if>
+            <if test="birthday != null">
+                and birthday = #{birthday}
+            </if>
+            <if test="email != null">
+                and email = #{email}
+            </if>
+            <if test="standScore != null">
+                and stand_score = #{standScore}
+            </if>
+            <if test="extInfo != null">
+                and ext_info = #{extInfo}
+            </if>
+            <if test="delFlag != null">
+                and del_flag = #{delFlag}
+            </if>
+            <if test="createBy != null">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null">
+                and remark = #{remark}
+            </if>
+        </where>
+    </update>
+
+    <update id="updateCrmContactByPk" parameterType="com.meta.crm.intf.entity.CrmContact">
+        UPDATE crm_contact
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="customerId != null">
+                customer_id = #{customerId},
+            </if>
+            <if test="apartment != null">
+                apartment = #{apartment},
+            </if>
+            <if test="position != null">
+                position = #{position},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile},
+            </if>
+            <if test="wechat != null">
+                wechat = #{wechat},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="standScore != null">
+                stand_score = #{standScore},
+            </if>
+            <if test="extInfo != null">
+                ext_info = #{extInfo},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+        </set>
+        <where>
+            id = #{id}
+            and tenant_id = #{tenantId}
+        </where>
+    </update>
+
+    <select id="listCrmContact" parameterType="com.meta.crm.intf.req.ro.CrmContactRo" resultMap="crmContactMap">
+        select
+        contact.*,
+        customer.customer_name as customerName
+        from crm_contact contact
+        left join crm_customer customer on contact.customer_id = customer.id and customer.tenant_id = #{tenantId}
+        left join crm_assign assign on contact.id = assign.target_id and assign.target_type = 'contact' and assign.tenant_id = #{tenantId}
+        <where>
+            1 = 1
+            and contact.del_flag = 0
+            and contact.tenant_id = #{tenantId}
+            <if test="managerId != null">
+                and assign.manager_id = #{managerId}
+            </if>
+            <if test="id != null">
+                and contact.id = #{id}
+            </if>
+            <if test="allNames != null">
+                and (
+                contact.name like CONCAT('%',#{allNames},'%')
+                or
+                customer.customer_name like CONCAT('%',#{allNames},'%')
+                )
+            </if>
+            <if test="name != null">
+                and contact.name like CONCAT('%',#{name},'%')
+            </if>
+            <if test="customerId != null">
+                and contact.customer_id = #{customerId}
+            </if>
+            <if test="apartment != null">
+                and contact.apartment = #{apartment}
+            </if>
+            <if test="position != null">
+                and contact.position = #{position}
+            </if>
+            <if test="mobile != null">
+                and contact.mobile like CONCAT('%',#{mobile},'%')
+            </if>
+            <if test="wechat != null">
+                and contact.wechat = #{wechat}
+            </if>
+            <if test="sex != null">
+                and contact.sex = #{sex}
+            </if>
+            <if test="birthday != null">
+                and contact.birthday = #{birthday}
+            </if>
+            <if test="email != null">
+                and contact.email = #{email}
+            </if>
+            <if test="standScore != null">
+                and contact.stand_score = #{standScore}
+            </if>
+            <if test="extInfo != null">
+                and contact.ext_info = #{extInfo}
+            </if>
+
+            <if test="createBy != null">
+                and contact.create_by = #{createBy}
+            </if>
+
+            <if test="updateBy != null">
+                and contact.update_by = #{updateBy}
+            </if>
+
+            <if test="remark != null">
+                and contact.remark = #{remark}
+            </if>
+            <if test="customerName != null">
+                and customer.customer_name like CONCAT('%',#{customerName},'%')
+            </if>
+            <if test="startDate != null">
+                and <![CDATA[ contact.create_time >= #{startDate} ]]>
+            </if>
+            <if test="endDate != null">
+                and <![CDATA[ contact.create_time <= #{endDate} ]]>
+            </if>
+            <if test="contactIds != null and contactIds.size>0">
+                and contact.id in
+                <foreach collection="contactIds" item="id" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+        order by contact.create_time desc
+    </select>
+
+
+    <select id="getById" parameterType="com.meta.crm.intf.req.ro.CrmCustomerRo" resultMap="crmContactMap">
+        select
+        <include refid="Base_Column_List"/>
+        from crm_contact
+        <where>
+             id = #{id}
+            and tenant_id = #{tenantId}
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.meta.crm.core.mapper.CrmFollowMapper">
+
+    <resultMap type="com.meta.crm.intf.entity.CrmFollow" id="crmFollowMap">
+        <result property="id" column="id"/>
+        <result property="targetType" column="target_type"/>
+        <result property="targetId" column="target_id"/>
+        <result property="followType" column="follow_type"/>
+        <result property="followSubType" column="follow_sub_type"/>
+        <result property="content" column="content"/>
+        <result property="files" column="files"/>
+        <result property="tenantId" column="tenant_id"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <sql id="Base_Column_List">
+                    id,                    target_type,                    target_id,                    follow_type,                    follow_sub_type,                    content,                    files,                    tenant_id,                    del_flag,                    create_by,                    create_time,                    update_by,                    update_time,                    remark            </sql>
+
+    <insert id="insertCrmFollow" parameterType="com.meta.crm.intf.entity.CrmFollow" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO crm_follow
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="targetType != null">
+                target_type,
+            </if>
+            <if test="targetId != null">
+                target_id,
+            </if>
+            <if test="followType != null">
+                follow_type,
+            </if>
+            <if test="followSubType != null">
+                follow_sub_type,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="files != null">
+                files,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        VALUE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="targetType != null">
+                #{targetType},
+            </if>
+            <if test="targetId != null">
+                #{targetId},
+            </if>
+            <if test="followType != null">
+                #{followType},
+            </if>
+            <if test="followSubType != null">
+                #{followSubType},
+            </if>
+            <if test="content != null">
+                #{content},
+            </if>
+            <if test="files != null">
+                #{files},
+            </if>
+            <if test="tenantId != null">
+                #{tenantId},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag},
+            </if>
+            <if test="createBy != null">
+                #{createBy},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+            <if test="remark != null">
+                #{remark},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="batchInsertCrmFollow" parameterType="com.meta.crm.intf.entity.CrmFollow" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO crm_follow
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="targetType != null">
+                target_type,
+            </if>
+            <if test="targetId != null">
+                target_id,
+            </if>
+            <if test="followType != null">
+                follow_type,
+            </if>
+            <if test="followSubType != null">
+                follow_sub_type,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="files != null">
+                files,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        VALUES
+        <foreach collection="list" separator="," item="crmFollow">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">
+                    #{id},
+                </if>
+                <if test="targetType != null">
+                    #{targetType},
+                </if>
+                <if test="targetId != null">
+                    #{targetId},
+                </if>
+                <if test="followType != null">
+                    #{followType},
+                </if>
+                <if test="followSubType != null">
+                    #{followSubType},
+                </if>
+                <if test="content != null">
+                    #{content},
+                </if>
+                <if test="files != null">
+                    #{files},
+                </if>
+                <if test="tenantId != null">
+                    #{tenantId},
+                </if>
+                <if test="delFlag != null">
+                    #{delFlag},
+                </if>
+                <if test="createBy != null">
+                    #{createBy},
+                </if>
+                <if test="createTime != null">
+                    #{createTime},
+                </if>
+                <if test="updateBy != null">
+                    #{updateBy},
+                </if>
+                <if test="updateTime != null">
+                    #{updateTime},
+                </if>
+                <if test="remark != null">
+                    #{remark},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <update id="updateCrmFollow" parameterType="com.meta.crm.intf.entity.CrmFollow">
+        UPDATE crm_follow
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="targetType != null">
+                target_type = #{targetType},
+            </if>
+            <if test="targetId != null">
+                target_id = #{targetId},
+            </if>
+            <if test="followType != null">
+                follow_type = #{followType},
+            </if>
+            <if test="followSubType != null">
+                follow_sub_type = #{followSubType},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+            <if test="files != null">
+                files = #{files},
+            </if>
+
+            <if test="delFlag != null">
+                del_flag = #{delFlag},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+        </set>
+        <where>
+            1 = 1
+            and tenant_id = #{tenantId}
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="targetType != null">
+                and target_type = #{targetType}
+            </if>
+            <if test="targetId != null">
+                and target_id = #{targetId}
+            </if>
+            <if test="followType != null">
+                and follow_type = #{followType}
+            </if>
+            <if test="followSubType != null">
+                and follow_sub_type = #{followSubType}
+            </if>
+            <if test="content != null">
+                and content = #{content}
+            </if>
+            <if test="files != null">
+                and files = #{files}
+            </if>
+            <if test="delFlag != null">
+                and del_flag = #{delFlag}
+            </if>
+            <if test="createBy != null">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null">
+                and remark = #{remark}
+            </if>
+        </where>
+    </update>
+
+    <update id="updateCrmFollowByPk" parameterType="com.meta.crm.intf.entity.CrmFollow">
+        UPDATE crm_follow
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="targetType != null">
+                target_type = #{targetType},
+            </if>
+            <if test="targetId != null">
+                target_id = #{targetId},
+            </if>
+            <if test="followType != null">
+                follow_type = #{followType},
+            </if>
+            <if test="followSubType != null">
+                follow_sub_type = #{followSubType},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+            <if test="files != null">
+                files = #{files},
+            </if>
+            <if test="tenantId != null">
+                tenant_id = #{tenantId},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+        </set>
+        <where>
+            id = #{id}
+            and tenant_id = #{tenantId}
+        </where>
+    </update>
+
+    <select id="listCrmFollow" parameterType="com.meta.crm.intf.req.ro.CrmFollowRo" resultMap="crmFollowMap">
+        select
+        <include refid="Base_Column_List"/>
+        from crm_follow
+        <where>
+            1 = 1 and del_flag = 0 and tenant_id = #{tenantId}
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="targetType != null">
+                and target_type = #{targetType}
+            </if>
+            <if test="targetId != null">
+                and target_id = #{targetId}
+            </if>
+            <if test="followType != null">
+                and follow_type = #{followType}
+            </if>
+            <if test="followSubType != null">
+                and follow_sub_type = #{followSubType}
+            </if>
+            <if test="content != null">
+                and content = #{content}
+            </if>
+            <if test="files != null">
+                and files = #{files}
+
+            </if>
+            <if test="createBy != null">
+                and create_by = #{createBy}
+            </if>
+            <if test="updateBy != null">
+                and update_by = #{updateBy}
+            </if>
+            <if test="remark != null">
+                and remark = #{remark}
+            </if>
+            <if test="startDate != null">
+                and <![CDATA[ create_time >= #{startDate} ]]>
+            </if>
+            <if test="endDate != null">
+                and <![CDATA[ create_time <= #{endDate} ]]>
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+
+    <select id="listByTargets" parameterType="com.meta.crm.intf.req.follow.ListFollowByTargetListRo"
+            resultMap="crmFollowMap">
+        select
+        <include refid="Base_Column_List"/>
+        from crm_follow
+        <where>
+            del_flag = 0
+            and (target_id, target_type) in
+            <foreach collection="list" item="item" separator="," open="(" close=")">
+                (#{item.targetId}, #{item.targetType})
+            </foreach>
+            and tenant_id = #{tenantId}
+        </where>
+        order by create_time desc
+    </select>
+
+    <select id="batchQueryLatestFollowUp" parameterType="com.meta.crm.intf.req.follow.BatchQueryLatestFollowRo"
+            resultMap="crmFollowMap">
+        SELECT
+        cf.*
+        FROM
+        ( SELECT target_id, max( id ) AS id FROM crm_follow where target_type = #{targetType} and del_flag=0
+        and tenant_id=#{tenantId} GROUP BY target_id ) tmp
+        LEFT JOIN crm_follow cf ON cf.id = tmp.id
+        <where>
+            cf.del_flag = 0 and cf.tenant_id=#{tenantId}
+            <if test="targetIds != null and targetIds.size>0">
+                and cf.target_id in
+                <foreach collection="targetIds" item="targetId" separator="," open="(" close=")">
+                    #{targetId}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+</mapper>

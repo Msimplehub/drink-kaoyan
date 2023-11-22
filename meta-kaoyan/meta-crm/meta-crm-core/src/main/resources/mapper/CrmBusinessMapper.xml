@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.meta.crm.core.mapper.CrmBusinessMapper">
+
+    <resultMap type="com.meta.crm.intf.entity.CrmBusiness" id="crmBusinessMap">
+        <result property="id" column="id"/>
+        <result property="businessName" column="business_name"/>
+        <result property="clueId" column="clue_id"/>
+        <result property="customerId" column="customer_id"/>
+        <result property="templateId" column="template_id"/>
+        <result property="currentStageCode" column="current_stage_code"/>
+        <result property="estimateDealAmount" column="estimate_deal_amount"/>
+        <result property="estimateDealDate" column="estimate_deal_date"/>
+        <result property="realDealDate" column="real_deal_date"/>
+        <result property="loseReason" column="lose_reason"/>
+        <result property="loseDesc" column="lose_desc"/>
+        <result property="tenantId" column="tenant_id"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <sql id="Base_Column_List">
+        id, business_name, clue_id, customer_id, template_id, current_stage_code, estimate_deal_amount, estimate_deal_date,
+        real_deal_date, lose_reason, lose_desc, tenant_id, del_flag, create_by, create_time, update_by, update_time, remark
+     </sql>
+
+    <insert id="insertCrmBusiness" parameterType="com.meta.crm.intf.entity.CrmBusiness" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO crm_business
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="businessName != null">
+                business_name,
+            </if>
+            <if test="clueId != null">
+                clue_id,
+            </if>
+            <if test="customerId != null">
+                customer_id,
+            </if>
+            <if test="templateId != null">
+                template_id,
+            </if>
+            <if test="currentStageCode != null">
+                current_stage_code,
+            </if>
+            <if test="estimateDealAmount != null">
+                estimate_deal_amount,
+            </if>
+            <if test="estimateDealDate != null">
+                estimate_deal_date,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        VALUE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="businessName != null">
+                #{businessName},
+            </if>
+            <if test="clueId != null">
+                #{clueId},
+            </if>
+            <if test="customerId != null">
+                #{customerId},
+            </if>
+            <if test="templateId != null">
+                #{templateId},
+            </if>
+            <if test="currentStageCode != null">
+                #{currentStageCode},
+            </if>
+            <if test="estimateDealAmount != null">
+                #{estimateDealAmount},
+            </if>
+            <if test="estimateDealDate != null">
+                #{estimateDealDate},
+            </if>
+            <if test="tenantId != null">
+                #{tenantId},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag},
+            </if>
+            <if test="createBy != null">
+                #{createBy},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+            <if test="remark != null">
+                #{remark},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="batchInsertCrmBusiness" parameterType="com.meta.crm.intf.entity.CrmBusiness" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO crm_business
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="businessName != null">
+                business_name,
+            </if>
+            <if test="clueId != null">
+                clue_id,
+            </if>
+            <if test="customerId != null">
+                customer_id,
+            </if>
+            <if test="templateId != null">
+                template_id,
+            </if>
+            <if test="currentStageCode != null">
+                current_stage_code,
+            </if>
+            <if test="estimateDealAmount != null">
+                estimate_deal_amount,
+            </if>
+            <if test="estimateDealDate != null">
+                estimate_deal_date,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        VALUES
+        <foreach collection="list" separator="," item="crmBusiness">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">
+                    #{id},
+                </if>
+                <if test="businessName != null">
+                    #{businessName},
+                </if>
+                <if test="clueId != null">
+                    #{clueId},
+                </if>
+                <if test="customerId != null">
+                    #{customerId},
+                </if>
+                <if test="templateId != null">
+                    #{templateId},
+                </if>
+                <if test="currentStageCode != null">
+                    #{currentStageCode},
+                </if>
+                <if test="estimateDealAmount != null">
+                    #{estimateDealAmount},
+                </if>
+                <if test="estimateDealDate != null">
+                    #{estimateDealDate},
+                </if>
+                <if test="tenantId != null">
+                    #{tenantId},
+                </if>
+                <if test="delFlag != null">
+                    #{delFlag},
+                </if>
+                <if test="createBy != null">
+                    #{createBy},
+                </if>
+                <if test="createTime != null">
+                    #{createTime},
+                </if>
+                <if test="updateBy != null">
+                    #{updateBy},
+                </if>
+                <if test="updateTime != null">
+                    #{updateTime},
+                </if>
+                <if test="remark != null">
+                    #{remark},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <update id="updateCrmBusiness" parameterType="com.meta.crm.intf.entity.CrmBusiness">
+        UPDATE crm_business
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="businessName != null">
+                business_name = #{businessName},
+            </if>
+            <if test="clueId != null">
+                clue_id = #{clueId},
+            </if>
+            <if test="customerId != null">
+                customer_id = #{customerId},
+            </if>
+            <if test="templateId != null">
+                template_id = #{templateId},
+            </if>
+            <if test="currentStageCode != null">
+                current_stage_code = #{currentStageCode},
+            </if>
+            <if test="estimateDealAmount != null">
+                estimate_deal_amount = #{estimateDealAmount},
+            </if>
+            <if test="estimateDealDate != null">
+                estimate_deal_date = #{estimateDealDate},
+            </if>
+            <if test="tenantId != null">
+                tenant_id = #{tenantId},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+        </set>
+        <where>
+            1 = 1
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="businessName != null">
+                and business_name = #{businessName}
+            </if>
+            <if test="clueId != null">
+                and clue_id = #{clueId}
+            </if>
+            <if test="customerId != null">
+                and customer_id = #{customerId}
+            </if>
+            <if test="templateId != null">
+                and template_id = #{templateId}
+            </if>
+            <if test="currentStageCode != null">
+                and current_stage_code = #{currentStageCode}
+            </if>
+            <if test="estimateDealAmount != null">
+                and estimate_deal_amount = #{estimateDealAmount}
+            </if>
+            <if test="estimateDealDate != null">
+                and estimate_deal_date = #{estimateDealDate}
+            </if>
+            <if test="tenantId != null">
+                and tenant_id = #{tenantId}
+            </if>
+            <if test="delFlag != null">
+                and del_flag = #{delFlag}
+            </if>
+            <if test="createBy != null">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null">
+                and remark = #{remark}
+            </if>
+        </where>
+    </update>
+
+    <update id="updateCrmBusinessByPk" parameterType="com.meta.crm.intf.entity.CrmBusiness">
+        UPDATE crm_business
+        <set>
+            <if test="businessName != null">
+                business_name = #{businessName},
+            </if>
+            <if test="clueId != null">
+                clue_id = #{clueId},
+            </if>
+            <if test="currentStageCode != null">
+                current_stage_code = #{currentStageCode},
+            </if>
+            <if test="estimateDealAmount != null">
+                estimate_deal_amount = #{estimateDealAmount},
+            </if>
+            <if test="estimateDealDate != null">
+                estimate_deal_date = #{estimateDealDate},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+            <if test="realDealDate != null">
+                real_deal_date = #{realDealDate},
+            </if>
+            <if test="loseReason != null">
+                lose_reason = #{loseReason},
+            </if>
+            <if test="loseDesc != null">
+                lose_desc = #{loseDesc},
+            </if>
+        </set>
+        <where>
+            id = #{id}
+            and tenant_id = #{tenantId}
+        </where>
+    </update>
+
+    <select id="listCrmBusiness" parameterType="com.meta.crm.intf.req.ro.CrmBusinessRo" resultMap="crmBusinessMap">
+        select
+        <include refid="Base_Column_List"/>
+        from crm_business
+        <where>
+            del_flag = 0 and tenant_id=#{tenantId}
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="businessName != null">
+                and business_name = #{businessName}
+            </if>
+            <if test="clueId != null">
+                and clue_id = #{clueId}
+            </if>
+            <if test="customerId != null">
+                and customer_id = #{customerId}
+            </if>
+            <if test="templateId != null">
+                and template_id = #{templateId}
+            </if>
+            <if test="currentStageCode != null">
+                and current_stage_code = #{currentStageCode}
+            </if>
+            <if test="estimateDealAmount != null">
+                and estimate_deal_amount = #{estimateDealAmount}
+            </if>
+            <if test="estimateDealDate != null">
+                and estimate_deal_date = #{estimateDealDate}
+            </if>
+            <if test="delFlag != null">
+                and del_flag = #{delFlag}
+            </if>
+            <if test="createBy != null">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null">
+                and remark = #{remark}
+            </if>
+            <if test="businessIds != null">
+                and id in
+                <foreach collection="businessIds" index="index" item="id" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+        order by create_time desc, id desc
+    </select>
+
+    <select id="queryBusinessList" parameterType="com.meta.crm.intf.req.ro.CrmBusinessRo"
+            resultType="com.meta.crm.intf.res.vo.business.BusinessListVo">
+        SELECT
+        cb.id as businessId,
+        cb.business_name as businessName,
+        cc.id as customerId,
+        cc.customer_name as customerName,
+        cb.current_stage_code as currentStageCode,
+        cb.estimate_deal_amount as estimateDealAmount,
+        cb.estimate_deal_date as estimateDealDate,
+        cb.real_deal_date as realDealDate,
+        ca.manager_id AS userId,
+        cb.create_by AS createBy,
+        cb.create_time as createTime
+        FROM
+        crm_business cb
+        LEFT JOIN crm_customer cc ON cb.customer_id = cc.id
+        AND cb.tenant_id = cc.tenant_id
+        LEFT JOIN crm_assign ca ON cb.id = ca.target_id
+        AND ca.target_type = 'business'
+        AND ca.manager_type = 0
+        AND ca.assign_role = 1
+        AND cc.tenant_id = ca.tenant_id
+        <where>
+            cb.del_flag=0 and cc.del_flag=0 and ca.del_flag=0
+            AND ca.tenant_id=#{tenantId} and cb.tenant_id=#{tenantId} and cc.tenant_id=#{tenantId}
+            <if test="mixedName!=null and mixedName!=''">
+                and (cb.business_name like concat('%', #{mixedName}, '%') or cc.customer_name like concat('%', #{mixedName}, '%'))
+            </if>
+            <if test="businessNameRex!=null and businessNameRex!=''">
+                and cb.business_name like concat('%', #{businessNameRex}, '%')
+            </if>
+            <if test="customerNameRex!=null and customerNameRex!=''">
+                and cc.customer_name like concat('%', #{customerNameRex}, '%')
+            </if>
+            <if test="currentStageCode!=null and currentStageCode!=''">
+                and cb.current_stage_code = #{currentStageCode}
+            </if>
+            <if test="startDate!=null">
+                and cb.create_time &gt;= #{startDate}
+            </if>
+            <if test="endDate!=null">
+                and cb.create_time &lt;= #{endDate}
+            </if>
+            <if test="userId!=null">
+                and ca.manager_id = #{userId}
+            </if>
+        </where>
+        order by cb.create_time desc, cb.id desc
+    </select>
+
+    <select id="businessNameCheck" parameterType="com.meta.crm.intf.req.ro.CrmBusinessRo" resultMap="crmBusinessMap">
+        select
+        <include refid="Base_Column_List"/>
+        from crm_business
+        <where>
+            del_flag = 0 and tenant_id=#{tenantId}
+            <if test="id != null">
+                and id != #{id}
+            </if>
+            <if test="businessName != null">
+                and business_name = #{businessName}
+            </if>
+            <if test="customerId != null">
+                and customer_id = #{customerId}
+            </if>
+        </where>
+    </select>
+
+    <select id="listCrmBusinessWithContactId" parameterType="com.meta.crm.intf.req.ro.CrmBusinessRo"
+            resultMap="crmBusinessMap">
+        select
+        cb.id,
+        cb.business_name,
+        cb.clue_id,
+        cb.customer_id,
+        cb.template_id,
+        cb.current_stage_code,
+        cb.estimate_deal_amount,
+        cb.estimate_deal_date,
+        cb.tenant_id,
+        cb.del_flag,
+        cb.create_by,
+        cb.create_time,
+        cb.update_by,
+        cb.update_time,
+        cb.remark
+        from crm_business cb left join crm_business_contact_relate cr on
+        cb.id = cr.business_id
+        <where>
+            cb.del_flag = 0 and cr.del_flag=0 and cb.tenant_id=#{tenantId} and cr.tenant_id=#{tenantId}
+            and cr.tenant_id=#{tenantId}
+            <if test="contactId != null">
+                and cr.contact_id = #{contactId}
+            </if>
+        </where>
+        GROUP BY
+        cb.id
+        order by create_time desc, id desc
+    </select>
+
+</mapper>

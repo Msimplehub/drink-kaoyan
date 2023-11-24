@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="meta-act-service" />
+        <module name="meta-module-express" />
+        <module name="meta-module-area" />
+        <module name="meta-module-pay" />
+        <module name="yan-web" />
+        <module name="yan-intf" />
+        <module name="meta-act-common" />
+        <module name="meta-framework-core" />
+        <module name="yan-domain" />
+        <module name="meta-module-opLog" />
+        <module name="meta-act-web" />
+        <module name="meta-module-sms" />
+        <module name="meta-module-jpush" />
+        <module name="yan-service" />
+        <module name="meta-module-quartz" />
+        <module name="meta-framework-common" />
+        <module name="meta-module-vcode" />
+        <module name="meta-module-company" />
+        <module name="yan-core" />
+        <module name="meta-module-pdt" />
+        <module name="meta-module-file" />
+        <module name="yan-starter" />
+        <module name="meta-framework-http" />
+        <module name="meta-module-generator" />
+        <module name="meta-module-thirdLogin" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="meta-crm-core" target="1.5" />
+      <module name="meta-crm-domain" target="1.5" />
+      <module name="meta-crm-intf" target="1.5" />
+      <module name="meta-crm-service" target="1.5" />
+      <module name="meta-crm-web" target="1.5" />
+      <module name="meta-module-etcSign" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="meta-module-pay" options="-verbose -Xlint:unchecked -Xlint:deprecation -extdirs $PROJECT_DIR$/meta-module/meta-module-pay/src/main/resources/lib" />
+    </option>
+  </component>
+</project>
